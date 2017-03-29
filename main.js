@@ -5,10 +5,10 @@ function Controller (){
         return xhr
     };
     this.addToHtml = function(text){        // add tag with class, ID and text!!
-        var a = $('<div>').attr('class', 'love_jquery');
-        a.attr('id', text + '_id');
-        a.text("content");
-        $('#empty_div').append(a);
+        var newDiv = $('<div>').attr('class', 'love_jquery');
+        newDiv.attr('id', text + '_id');
+        newDiv.text("content");
+        $('#empty_div').append(newDiv);
 
     }
 };
