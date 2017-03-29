@@ -1,18 +1,41 @@
-var pets = [
-    {
-        "name": "Miau",
-        "species": "cat",
-        "favFood": "milk"
-    },
-    {
-        "name": "Bausek",
-        "species": "dog",
-        "favFood": "meat"
+function Controller (){
+    this.getXhrObject = function(method, url){
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url, true);
+        return xhr
+    };
+    this.addToHtml = function(text){        // add tag with class, ID and text!!
+        var a = $('<div>').attr('class', 'love_jquery');
+        a.attr('id', text + '_id');
+        a.text("content");
+        $('#empty_div').append(a);
+
     }
-];
+};
+
 
 $(document).ready(function(){
-    $("#update_page").click(function(){
-        console.log(pets[0].favFood);
+    var controller = new Controller();  // global variable for functions
+
+
+    $("#update_button").click(function(){
+        var xhr = controller.getXhrObject('GET', 'https://learnwebcode.github.io/json-example/animals-1.json');
+        xhr.onload = function(){
+            if (xhr.status >= 200 && xhr.status < 400){
+                var data = JSON.parse(xhr.responseText);
+                for (var i = 0; i < data.length; i++){
+                    console.log(data[i].name);
+                    controller.addToHtml(data[i].name)}
+            }
+            else {
+                alert("Wrong url added")
+            }
+        };
+
+        xhr.send(); // carefully, it has to be OUTSIDE the onload function!!!!!
     });
+
 });
+
+
+

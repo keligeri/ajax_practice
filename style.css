@@ -1,0 +1,13 @@
+.header {
+    display: inline-block;
+    margin: 10px;
+    vertical-align: middle;
+}
+
+#update_button {
+    background-color: lightsteelblue;
+    width: 200px;
+    height: 50px;
+    font-family: "DejaVu Serif";
+    font-size: 200%;
+}
